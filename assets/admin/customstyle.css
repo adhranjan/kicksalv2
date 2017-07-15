@@ -1,0 +1,54 @@
+div.relative {
+    position: relative;
+}
+
+div.absolute {
+    position: absolute;
+    top: 0;
+    right: 30%;
+}
+
+.easy-tree{
+    display: none;
+    z-index: 10;
+}
+.easy_tre_relative{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.10;
+}
+
+.media_section {
+    border: 1px solid #d1d1d1;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+@media all and (min-width: 480px) {
+    .media_section label {
+        height: 150px;
+        border: dashed 2px #aaaaaa;
+        background: #f8f8f8;;
+        display: inherit;
+        margin-bottom: 10px;
+        text-align: center;
+        cursor: grab;
+    }
+}
+#media img{
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+}
+.image_upload{
+    display: none !important;
+}
+
+.selected_img{
+    background-color: #5a738e !important;
+}
+
