@@ -7,10 +7,14 @@
     "require": {
         "php": ">=5.6.4",
         "cviebrock/eloquent-sluggable": "^4.2",
+        "intervention/image": "^2.4",
         "laravel/framework": "5.4.*",
+        "laravel/passport": "^3.0",
+        "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
-        "zizaco/entrust": "5.2.x-dev"
+        "zizaco/entrust": "5.2.x-dev",
+        "nicolaslopezj/searchable": "1.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

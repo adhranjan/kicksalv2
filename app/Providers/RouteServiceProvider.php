@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Futsal;
+use App\StaffProfile;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;

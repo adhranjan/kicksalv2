@@ -1,4 +1,5 @@
 @extends('includes.adminDefault')
+<link href="{{ asset('assets/admin/vendors/single_image/single_image.css') }}" rel="stylesheet">
 @section('body_content')
     <div class="row tile_count">
     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -36,162 +37,86 @@
     <div class="col-md-4 col-sm-4 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Recent Activities <small>Sessions</small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Settings 1</a>
-                            </li>
-                            <li><a href="#">Settings 2</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                </ul>
+                <h2>Futsal <small>Logo</small></h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
                 <div class="dashboard-widget-content">
+                    <div class="panel-body collapse in" id="pro_collapse_member_image">
+                        @if(Auth::User()->can('manage-my-futsal'))
+                            {!! Form::open(['route'=>'change_futsal_display_picture','method'=>'POST','class'=>'form-horizontal form-label-left','id'=>'change_futsal_display_picture','files' => true]) !!}
+                            <label class="single_image col-md-12 col-lg-12 @if($errors->has('image')) has-error @elseif(count($errors->all())>0) has-success @endif has-feedback" for="image_browse">
 
-                    <ul class="list-unstyled timeline widget">
-                        <li>
-                            <div class="block">
-                                <div class="block_content">
-                                    <h2 class="title">
-                                        <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                    </h2>
-                                    <div class="byline">
-                                        <span>13 hours ago</span> by <a>Jane Smith</a>
-                                    </div>
-                                    <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="block">
-                                <div class="block_content">
-                                    <h2 class="title">
-                                        <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                    </h2>
-                                    <div class="byline">
-                                        <span>13 hours ago</span> by <a>Jane Smith</a>
-                                    </div>
-                                    <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="block">
-                                <div class="block_content">
-                                    <h2 class="title">
-                                        <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                    </h2>
-                                    <div class="byline">
-                                        <span>13 hours ago</span> by <a>Jane Smith</a>
-                                    </div>
-                                    <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="block">
-                                <div class="block_content">
-                                    <h2 class="title">
-                                        <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                    </h2>
-                                    <div class="byline">
-                                        <span>13 hours ago</span> by <a>Jane Smith</a>
-                                    </div>
-                                    <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                                    {!!Form::file('image', ['class'=>'form-control','id'=>'image_browse'])!!}
+                                    @if($errors->has('image'))
+                                        <br>
+                                        <i class="red">{{ $errors->first('image') }}</i>
+                                    @endif
+                                <img src="{{ Auth::User()->staffProfile->relatedFutsal->avatar_id}}?width=154" id="image_preview" alt=""/>
+                            </label>
+                        {!! Form::close() !!}
+
+                        @else
+
+                        @endif
+                        <!-- image -->
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-
-
     <div class="col-md-8 col-sm-8 col-xs-12">
-
-
-
+        @role('futsal_admin')
         <div class="row">
-
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Visitors location <small>geo-presentation</small></h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Settings 1</a>
-                                    </li>
-                                    <li><a href="#">Settings 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a class="close-link"><i class="fa fa-close"></i></a>
-                            </li>
-                        </ul>
+                        <h2>Find Your Futsal</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <div class="dashboard-widget-content">
-                            <div class="col-md-4 hidden-small">
-                                <h2 class="line_30">125.7k Views from 60 countries</h2>
-
-                                <table class="countries_list">
-                                    <tbody>
-                                    <tr>
-                                        <td>United States</td>
-                                        <td class="fs15 fw700 text-right">33%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>France</td>
-                                        <td class="fs15 fw700 text-right">27%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Germany</td>
-                                        <td class="fs15 fw700 text-right">16%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Spain</td>
-                                        <td class="fs15 fw700 text-right">11%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Britain</td>
-                                        <td class="fs15 fw700 text-right">10%</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            <div class="form-group input-group @if(count($errors->all())>0){{($errors->has('coordinates'))?'has-error':'has-success'}}@endif col-lg-12 col-md-12">
+                                @if($errors->has('coordinates'))
+                                    <span class="glyphicon glyphicon-exclamation-sign form-control-feedback" aria-hidden="true"></span>
+                                    <p class="help-block">{{$errors->first('coordinates')}}</p>
+                                @elseif(count($errors->all())>0)
+                                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                                @endif
                             </div>
-                            <div id="world-map-gdp" class="col-md-8 col-sm-12 col-xs-12" style="height:230px;"></div>
+                            @if(Auth::User()->can('manage-my-futsal'))
+                                <div id='map' class='mapCooL' style="width:100%; height:370px;"></div>
+                                {!! Form::open(['route'=>'change_futsal_coordinates','method'=>'POST','class'=>'form-horizontal form-label-left','id'=>'change_futsal_display_picture','files' => true]) !!}
+                                   <input id="pac-input" class="controls" type="text" placeholder="Search Place">
+                                    <input type='hidden' size='38' maxlength='40' name='coordinates' id='coordinates' class="form-control" value="{!! Auth::USer()->staffProfile->relatedFutsal->map_coordinates !!}" />
+                                        <br>
+                                    <button class="pull-right btn btn-success" type="Submit">Change</button>
+                                    <div class="clearfix"></div>
+                                {!! Form::close() !!}
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
+        @endrole
         <div class="row">
-
-
             <!-- Start to do list -->
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
+                        <div class="col-md-4 hidden-small">
+                            <table class="countries_list">
+                                <tbody>
+                                @foreach( Auth::User()->staffProfile->relatedFutsal->paymentGateways as $paymentGateway)
+                                    <tr>
+                                        <td>{{ $paymentGateway->name }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                         <h2>To Do List <small>Sample tasks</small></h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -367,4 +292,21 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('footer')
+    <script type="text/javascript" src="{{asset('assets/admin/vendors/single_image/single_image.js')}}"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChgJjjrSLRJVmLWL8d3nQtvIscekfI_-s&libraries=places"></script>
+    <script type="text/javascript" src="{{asset('assets/admin/vendors/googlemap/js/google_map.js')}}"></script>
+    <script>
+        $( document ).ready(function() {
+            @if(Auth::User()->can('manage-my-futsal'))
+                $('#image_browse').on('change',function(){
+                    $('#change_futsal_display_picture').submit()
+                })
+            @endif
+
+        });
+    </script>
+
 @endsection

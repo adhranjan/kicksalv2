@@ -19,16 +19,19 @@ class MakeBookingTable extends Migration
             $table->integer('player_id')->unsigned();
             $table->foreign('player_id')->references('id')->on('player_profile');
 
-            $table->integer('futsal_id')->unsigned();
-            $table->foreign('futsal_id')->references('id')->on('futsals');
 
             $table->integer('book_time')->nullable()->unsigned();
             $table->foreign('book_time')->references('id')->on('book_time');
 
             $table->date('game_day');
-            $table->enum('status',[0,1,2,3]);
+            $table->tinyInteger('status');
 
             $table->string('booking_code')->nullable();
+            $table->integer('price_batch');
+            $table->integer('payment_status');
+            $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

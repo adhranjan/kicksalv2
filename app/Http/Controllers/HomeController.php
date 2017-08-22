@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Role;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -24,7 +24,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $route=explode('_',Auth::User()->roles()->first()->name)[0].'_home';
+
+        $user=Auth::user();
+        if($user->kicksalOwnerProfile){
+            $route='kicksal';
+        }elseif($user->staffProfile) {
+            $route='futsal';
+        }elseif($user->hasRole(Role::where('name','like','player_%')->first()->name)){
+            $route='users';
+        }else{
+            abort(401,'We Dont know, what kind of user you are.');
+        }
+
+
+        $route.='_home';
         return redirect()->route($route);
         //return view('home');
     }

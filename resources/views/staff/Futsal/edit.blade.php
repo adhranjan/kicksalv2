@@ -23,14 +23,14 @@
                             </div>
                             <div class="form-group">
                                 {{ Form::label('admin', 'Admin Name', array('class' => 'control-label')) }}
-                                {!! Form::text('admin', $futsal->admin()->name,['class'=>$errors->first('admin')?'parsley-error form-control':''.'form-control','required'=>'required','id'=>'admin','Placeholder'=>'Admin Name']) !!}
+                                {!! Form::text('admin', $futsal->admin->user->name,['class'=>$errors->first('admin')?'parsley-error form-control':''.'form-control','required'=>'required','id'=>'admin','Placeholder'=>'Admin Name']) !!}
                                 @if($errors->first('admin'))
                                     <i class="red">{{ $errors->first('admin') }}</i>
                                 @endif
                             </div>
                             <div class="form-group">
                                 {{ Form::label('email', 'Admin Email', array('class' => 'control-label')) }}
-                                {!! Form::text('email', $futsal->admin()->email,['class'=>$errors->first('email')?'parsley-error form-control':''.'form-control','required'=>'required','id'=>'email','Placeholder'=>'Admin Email']) !!}
+                                {!! Form::text('email', $futsal->admin->user->email,['class'=>$errors->first('email')?'parsley-error form-control':''.'form-control','required'=>'required','id'=>'email','Placeholder'=>'Admin Email']) !!}
                                 @if($errors->first('email'))
                                     <i class="red">{{ $errors->first('email') }}</i>
                                 @endif

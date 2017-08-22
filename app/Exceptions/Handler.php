@@ -5,6 +5,8 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -44,6 +46,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+        if ($exception instanceof TokenMismatchException){
+            return redirect()->back()->with('status','warning')->with('head','Session Mismatch')->with('message','You seem to be inactive since long. Keep your session fresh. :)');
+        }
+       if ($exception instanceof MethodNotAllowedHttpException){
+
+        }
+
         return parent::render($request, $exception);
     }
 

@@ -15,7 +15,10 @@ class MakeBookTimeTable extends Migration
     {
         Schema::create('book_time', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('time');
+            $table->string('start_time');
+            $table->string('end_time');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

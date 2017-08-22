@@ -1,8 +1,6 @@
 @extends('includes.adminDefault')
 @section('header')
     <link href="{{ asset('assets/admin/vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/admin/vendors/pnotify/dist/pnotify.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/admin/vendors/pnotify/dist/pnotify.buttons.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
 @endsection
 
@@ -35,14 +33,10 @@
         </div>
     </div>
 @endsection
-
 @section('footer')
 
     <script src="{{ asset('assets/admin/vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendors/pnotify/dist/pnotify.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendors/pnotify/dist/pnotify.buttons.js') }}"></script>
     <script>
-
 
     </script>
 

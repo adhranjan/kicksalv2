@@ -17,6 +17,8 @@ class PaymentGatewayTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('api_url');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

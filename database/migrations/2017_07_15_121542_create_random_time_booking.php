@@ -19,6 +19,8 @@ class CreateRandomTimeBooking extends Migration
             $table->foreign('booking_id')->references('id')->on('game_bookings');
             $table->time('start_time');
             $table->time('end_time');
+            $table->timestamps();
+            $table->softDeletes();
 
         });
     }

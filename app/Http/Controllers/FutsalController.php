@@ -7,6 +7,7 @@ use App\Http\Requests\FutsalCreation;
 use App\PaymentGateway;
 use App\Role;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class FutsalController extends Controller
@@ -44,9 +45,7 @@ class FutsalController extends Controller
      */
     public function store(FutsalCreation $request)
     {
-        $Pass=substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyz"), 0, 8);
         $book_via_app=$request->has('book_via_app')?'1':'0';
-
         $futsal=Futsal::create([
             'name'=>$request->name,
             'book_via_app'=>$book_via_app,
@@ -54,16 +53,20 @@ class FutsalController extends Controller
         ]);
 
 
-        $staff=User::create([
+        $ownerAccount=User::create([
             'name'=>$request->admin,
             'email'=>$request->email,
-            'password'=>bcrypt($Pass),
+            'password'=>bcrypt('kicksalapp'),
+            'api_token'=>str_random(60),
         ]);
 
         $futsalAdminRole=Role::where('name','like','futsal_%')->get();
 
-        $staff->attachRoles($futsalAdminRole); // giving him authority to be admin of given futsal, he now can create owners and staffs account
-        $staff->workingFutsal()->attach([$futsal->id]);
+        $ownerAccount->attachRoles($futsalAdminRole); // giving him authority to be admin of given futsal, he now can create owners and staffs account
+
+        $ownerAccount->staffProfile()->create([
+            'futsal_id'=>$futsal->id
+        ]);
 
         if($request->has('payment_gateway')){
             $futsal->paymentGateways()->attach($request->payment_gateway);
@@ -71,7 +74,7 @@ class FutsalController extends Controller
 
 
         // send email
-        return redirect()->back()->with('status','info')->with('head','Futsal Created')->with('message','Login Details is sent in given email address.'.$Pass);
+        return redirect()->back()->with('status','info')->with('head','Futsal Created')->with('message','Login Details is sent in given email address.');
 
     }
 
@@ -83,8 +86,7 @@ class FutsalController extends Controller
      */
     public function show($id)
     {
-
-
+        abort(404);
     }
 
     /**
@@ -110,7 +112,7 @@ class FutsalController extends Controller
      */
     public function update(FutsalCreation $request, Futsal $futsal)
     {
-        $staff=$futsal->admin();
+        $staff=$futsal->admin->user;
         $staff->fill([
             'name'=>$request->admin,
             'email'=>$request->email,
@@ -141,13 +143,11 @@ class FutsalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        abort(404);
     }
 
     public function __construct()
     {
         $this->kicksalData['payment_gateways']=PaymentGateway::pluck('name','id');
     }
-
-
 }

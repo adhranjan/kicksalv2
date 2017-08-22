@@ -1,0 +1,17 @@
+.single_image {
+    border: 1px dashed #ccc;
+    padding: 15px;
+    cursor: pointer;
+    min-height: 130px;
+    vertical-align: middle;
+    text-align: center; }
+.single_image:hover {
+    border: 1px dashed #444;
+    background: #efefef; }
+.single_image span {
+    color: #aaa; }
+@media all and (min-width: 480px) {
+    .single_image input[type=file] {
+        visibility: hidden !important; } }
+.single_image img {
+    max-width: 70% !important; }

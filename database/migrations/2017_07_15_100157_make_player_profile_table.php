@@ -17,9 +17,13 @@ class MakePlayerProfileTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->nullable()->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('phone');
+            $table->string('phone')->unique();
+            $table->string('user_name')->nullable();
+            $table->enum('gender',[0,1])->nullable();
             $table->string('address')->nullable();
-     });
+            $table->timestamps();
+            $table->softDeletes();
+        });
     }
 
     /**

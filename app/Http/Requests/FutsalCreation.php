@@ -35,7 +35,7 @@ class FutsalCreation extends FormRequest
                 return [
                     'name'=>'required',
                     'admin'=>'required',
-                    'email'=>'required|email|unique:users,email,'.$this->futsal->admin()->id,
+                    'email'=>'required|email|unique:users,email,'.$this->futsal->admin->user->id,
                 ];
             break;
 

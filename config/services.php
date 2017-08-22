@@ -35,4 +35,11 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'google' => [
+        'client_id' => '1068903856979-dnfpr0hdtpuhr5qffgo2gpcnojdnpe1s.apps.googleusercontent.com',
+        'client_secret' => 'yE0FeV-L5tJUNttxtisfGmgO',
+        'redirect' => 'http://v2.kicksal.com/social/auth/google/callback',
+    ],
+
+
 ];
